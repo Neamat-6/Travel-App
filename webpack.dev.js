@@ -3,15 +3,12 @@ const webpack = require('webpack')
 const HtmlWebPackPlugin = require("html-webpack-plugin")
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
-module.exports = {
+module.exports = { 
     entry: './src/client/index.js',
     mode: 'development',
     devtool: 'source-map',
     stats: 'verbose',
-    output: {
-        libraryTarget: 'var',
-        library: 'Client'
-    },
+
     module: {
         rules: [
             {
@@ -21,12 +18,21 @@ module.exports = {
             },
             {
                 test: /\.scss$/,
+                use: [ 'style-loader', 'css-loader', 'sass-loader' ]
+            },
+            {
+                test: /\.(gif|png|jpe?g|svg)$/i,
                 use: [
-                    'style-loader',
-                    'css-loader',
-                    'sass-loader'
-                ]
-            }
+                  'file-loader',
+                  {
+                    loader: 'image-webpack-loader',
+                    options: {
+                      bypassOnDebug: true, // webpack@1.x
+                      disable: true, // webpack@2.x and newer
+                    },
+                  },
+                ],
+              }
         ]
     },
     plugins: [

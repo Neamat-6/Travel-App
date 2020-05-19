@@ -2,15 +2,21 @@ const path = require('path')
 const webpack = require('webpack')
 const HtmlWebPackPlugin = require("html-webpack-plugin")
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const WorkboxPlugin = require('workbox-webpack-plugin');
+const worboxPlugin = require('workbox-webpack-plugin')
 
 module.exports = {
-    entry: ['babel-polyfill', './src/client/index.js'],
+    // context: __dirname + "/app",
+    // entry:'./src/client/index.js',
+    // output: {
+    //     path: __dirname + "/dist",
+    //     filename: 'bundle.js',
+    // },
+    entry: {
+        serviceWorker: './src/client/serviceWorker.js',
+        main:'./src/client/index.js',
+            },
     mode: 'production',
-    output: {
-        libraryTarget: 'var',
-        library: 'Client'
-    },
+    devtool: 'source-map',
     module: {
         rules: [
             {
@@ -21,7 +27,18 @@ module.exports = {
             {
                 test: /\.scss$/,
                 use: [ MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader' ]
-            }
+            },
+            {
+                test: /\.(gif|png|jpe?g|svg)$/i,
+                use:
+                  {
+                    loader: 'file-loader',
+                    options: {
+                        outputPath: 'media'
+                    },
+                  },
+                
+              }
         ]
     },
     plugins: [
@@ -30,6 +47,6 @@ module.exports = {
             filename: "./index.html",
         }),
         new MiniCssExtractPlugin({filename: '[name].css'}),
-        new WorkboxPlugin.GenerateSW()
+        new worboxPlugin.GenerateSW()
     ]
 }

@@ -1,0 +1,85 @@
+@import "./colors.scss";
+@import "./standard.scss";
+
+.splash-screen {
+    z-index: 20;
+    @extend %center-layout;
+
+    @media (min-width: 768px) {
+        z-index: 1;
+        position: relative;
+        min-width: 60vw;
+        border-radius: 0 3rem 3rem 0;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+    }
+
+    background-image: linear-gradient(0deg,
+        $Arizona-2-rgba 0%,
+        $Arizona-1-rgba 50%,
+        $Arizona-5-rgba 100%),
+    url("../media/hero-mobile_4.jpg");
+    @extend %background;
+    display: grid;
+    grid-column: 100%;
+    grid-row: 1fr 1fr 1fr;
+    background-color: $Arizona-3-hex;
+
+    &__header {
+        margin: 1rem 0;
+        @include header();
+
+        @media (min-width: 768px) {
+            @include header();
+        }
+    }
+
+    &__content {
+        color: $Arizona-5-hex;
+        grid-row: 3/4;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        color: $Arizona-7-hex;
+        @include description();
+
+        * {
+            padding: 0 0.8rem;
+
+            @media (min-width: 768px) {
+                padding: 0;
+            }
+        }
+
+        @media (min-width: 768px) {
+            width: 32rem;
+            justify-content: space-around;
+            align-items: flex-start;
+            margin-left: 3rem;
+            @include description();
+        }
+    }
+
+    &__button {
+        text-transform: uppercase;
+        border-radius: 1rem 1rem 0 0;
+        text-align: center;
+        background-color: $Arizona-4-hex;
+        color: $Arizona-7-hex;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        padding: 1.5rem 0;
+        @include description();
+        letter-spacing: 0.08em;
+
+        @media (min-width: 768px) {
+            width: 13.75rem;
+            border-radius: 1rem;
+            position: relative;
+            margin-top: 3rem;
+            @include description();
+        }
+    }
+}

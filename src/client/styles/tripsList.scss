@@ -1,0 +1,179 @@
+@import "./colors.scss";
+@import "./standard.scss";
+
+.trips-list {
+    display: none;
+    @extend %display-center;
+    flex-direction: column;
+    @extend %center-layout;
+    z-index: 21;
+
+    @media (min-width: 768px) {
+        @include clear-layout();
+        width: 38vw;
+        grid-column: 2/3;
+        grid-row: 1/2;
+        display: none;
+        z-index: 10 !important;
+        max-height: 100vh;
+    }
+
+    &__container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__card {
+        position: relative;
+        height: 17.2rem;
+        width: 11.6rem;
+        border-radius: 1rem;
+        cursor: pointer;
+        box-shadow: 0 10px 20px rgba(82, 74, 74, 0.3);
+        @extend %background;
+
+        &:hover {
+            box-shadow: 0 10px 20px rgba(82, 74, 74, 0.5);
+            transition: all 0.3s ease-in-out;
+        }
+
+        &:hover .trips-list__btn-container {
+            visibility: visible;
+            opacity: 1;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        &::after {
+            content: "";
+            display: block;
+            width: 100%;
+            height: 100%;
+            border-radius: 1rem;
+            background-color: rgba(0, 0, 0, 0);
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        &:hover::after {
+            background-color: $Arizona-6-rgba;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        span {
+            position: absolute;
+            display: block;
+            color: $Arizona-4-hex;
+            padding: 1rem 0.8rem;
+            bottom: 0;
+            @extend %small-text;
+        }
+    }
+
+    &__delete-btn,
+    &__view-btn {
+        color: $Arizona-7-hex;
+        border: solid 1px $Arizona-7-hex;
+        @extend %sub-title;
+        border-radius: 5px;
+        padding: 0.4rem 0.6rem;
+        text-align: center;
+    }
+    
+    &__view-btn {
+        background-color: $Arizona-4-hex;
+        border: solid 1px $Arizona-4-hex;
+    }
+    
+    &__warning-btn {
+        color: $Arizona-4-hex;
+        padding: 1rem 0.8rem;
+        display: block;
+        text-align: center;
+    }
+
+    &__btn-container {
+        height: 25%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease-in-out;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    &__header {
+        @include header();
+        color: $Arizona-4-hex;
+        margin-bottom: 3rem;
+    }
+
+    .add-trip {
+        @extend %display-center;
+        border-radius: 50%;
+        color: $Arizona-7-hex;
+        font-size: 2rem;
+        z-index: 2;
+        width: 3rem;
+        height: 3rem;
+        background-color: $Arizona-4-hex;
+        position: absolute;
+        bottom: 1rem;
+        right: 1rem;
+        transform: translateX(-50%);
+        box-shadow: 0 10px 20px rgba(82, 74, 74, 0.3);
+
+        &:hover {
+            cursor: pointer;
+            background-color: $Arizona-3-hex;
+            box-shadow: 0 10px 20px rgba(82, 74, 74, 0.5);
+            transition: all 0.3s ease-in-out;
+        }
+    }
+}
+
+.expired {
+    &::after {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 100%;
+        border-radius: 1rem;
+        background-color: $Arizona-5-rgba;
+        transition: background-color 0.3s ease-in-out;
+    }
+
+    &:hover::after {
+        background-color: $Arizona-1-rgba;
+        transition: background-color 0.3s ease-in-out;
+    }
+
+    .trips-list__btn-container {
+        opacity: 1;
+        visibility: visible;
+        padding: 0.5rem;
+    }
+}
+
+.inner-container {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-y: auto;
+
+    .trips-list__card {
+        flex: 0 0 auto;
+        margin: 2rem 1rem;
+    }
+
+    width: 320px;
+    height: 100%;
+    -webkit-overflow-scrolling: touch;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}

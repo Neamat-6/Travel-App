@@ -1,0 +1,56 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,700,900,900i&display=swap");
+@import "./colors.scss";
+
+html,
+body,
+*::before,
+*::after,
+* {
+    font-family: "Roboto" , Lato, "Lucida Grande", Tahoma, Sans-Serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+
+    &:active {
+        color: inherit;
+    }
+}
+
+input {
+    padding: 1.2rem 0.5rem;
+    border: none;
+    outline-style: none;
+
+    &[type="submit"] {
+        padding: 0.8rem 0.5rem !important;
+        cursor: pointer;
+    }
+}
+
+p {
+    letter-spacing: 0.01rem;
+    line-height: 150%;
+}
+
+section {
+    @media (min-width: 320px) {
+        width: 100%;
+        overflow: hidden;
+    }
+
+    background-color: $Arizona-7-hex;
+    min-height: 100vh;
+}
+
+body {
+    @media (min-width: 768px) {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr;
+    }
+}

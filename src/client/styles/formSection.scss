@@ -1,0 +1,95 @@
+@import "./colors.scss";
+@import "./standard.scss";
+
+.form-section {
+    @extend %display-center;
+
+    .form {
+
+        @media (min-width: 320px) {
+            width: 90%;
+        }
+
+        @media (min-width: 768px) {
+            width: 320px;
+        }
+
+        display: flex;
+        flex-direction: column;
+    }
+
+    .input-container {
+        position: relative;
+        margin: 0.8rem 0;
+
+        label {
+            position: absolute;
+            pointer-events: none;
+            left: 0;
+            padding: 0.8rem 0.5rem;
+            transition: all 0.3s ease-in-out;
+            color: $Arizona-4-hex;
+        }
+
+        .inputs {
+            width: 100%;
+            height: 100%;
+            color: $Arizona-4-hex;
+            @include description();
+
+            &:focus+label,
+            &:valid+label {
+                padding: 0 0.5rem;
+                top: 0;
+                @include description();
+                transition: all 0.3s ease-in-out;
+            }
+        }
+    }
+
+    .sub-btn {
+        @extend %button;
+        width: 100%;
+        background-color: $Arizona-3-hex;
+        color: $Arizona-7-hex;
+        border-radius: 1rem;
+        transition: all 0.3s ease-in-out;
+
+        &:hover {
+            background-color: $Arizona-4-hex;
+            color: $Arizona-7-hex;
+            transition: all 0.3s ease-in-out;
+        }
+    }
+
+    .new-user {
+        margin: 1rem 0;
+        padding: 0;
+        font-style: italic;
+        font-weight: light;
+        color: $Arizona-2-hex;
+    }
+}
+
+.sign-up {
+    z-index: 18;
+    display: none;
+    @extend %center-layout;
+
+    @media (min-width: 768px) {
+        display: none;
+        width: 100%;
+    }
+}
+
+.sign-in {
+    display: none;
+    z-index: 19;
+    @extend %center-layout;
+
+    @media (min-width: 768px) {
+        @include clear-layout();
+        display: flex;
+        padding: 0 1rem;
+    }
+}

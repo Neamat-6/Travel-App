@@ -1,0 +1,44 @@
+@import "./colors.scss";
+
+.move-right {
+    transform: translateX(-1500%) !important;
+    transition: all 1s ease-in-out;
+}
+
+.move-left {
+    transform: translateX(0%);
+    transition: all 0.3s ease-in-out;
+}
+
+.fade-out {
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+}
+
+.fade-in {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transition: all 0.3s ease-in-out;
+}
+
+.toggle-burger {
+    span {
+        background-color: $Arizona-1-hex !important;
+
+        &:first-child {
+            transform: translateY(11px) rotate(45deg);
+        }
+
+        &:nth-child(2) {
+            opacity: 0;
+        }
+
+        &:last-child {
+            transform: translateY(-11px) rotate(-45deg);
+        }
+    }
+}
+
+.toggle-mobile-menu {
+    visibility: visible;
+}
